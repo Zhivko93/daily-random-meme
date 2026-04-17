@@ -6,10 +6,10 @@ import requests
 SUBREDDITS = [
     "memes",
     "dankmemes",
-    "wholesomememes",
-    "me_irl",
     "funny",
 ]
+
+MIN_UPVOTES = 3000
 
 STATE_FILE = Path("last_meme_state.txt")
 MEME_API_BASE = "https://meme-api.com/gimme"
