@@ -4,9 +4,11 @@ from pathlib import Path
 import requests
 
 SUBREDDITS = [
-    "memes",
     "dankmemes",
-    "funny",
+    "historymemes",
+    "balkans_irl",
+    "memes",
+    "comics",
 ]
 
 MIN_UPVOTES = 3000
