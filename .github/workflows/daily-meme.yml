@@ -2,9 +2,16 @@ name: Daily Reddit Meme
 
 on:
   schedule:
-    - cron: "7 7 * * *"
-      timezone: "Europe/Amsterdam"
+    # GitHub Actions cron uses UTC. 05:30 UTC is before 08:00 in Central Europe year-round.
+    - cron: "30 5 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-reddit-meme
+  cancel-in-progress: false
 
 jobs:
   run:
@@ -22,3 +29,14 @@ jobs:
       - run: python daily_reddit_meme_to_discord.py
         env:
           DISCORD_RANDOM_WEBHOOK_URL: ${{ secrets.DISCORD_RANDOM_WEBHOOK_URL }}
+
+      - name: Save sent meme history
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain sent_meme_history.txt)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add sent_meme_history.txt
+            git commit -m "Update sent meme history [skip ci]"
+            git push
+          fi
