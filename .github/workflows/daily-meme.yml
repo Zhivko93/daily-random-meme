@@ -2,8 +2,8 @@ name: Daily Reddit Meme
 
 on:
   schedule:
-    # GitHub Actions cron uses UTC. 05:30 UTC is before 08:00 in Central Europe year-round.
-    - cron: "30 5 * * *"
+    # GitHub Actions cron uses UTC. Match the random-space-fact workflow schedule.
+    - cron: "0 4 * * *"
   workflow_dispatch:
 
 permissions:
