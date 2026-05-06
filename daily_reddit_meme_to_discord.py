@@ -8,7 +8,6 @@ SUBREDDITS = [
     "historymemes",
     "balkans_irl",
     "memes",
-    "comics",
 ]
 
 MIN_UPVOTES = 3000
